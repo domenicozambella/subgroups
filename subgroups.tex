@@ -1,0 +1,142 @@
+\documentclass{amsproc}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{comment}
+\usepackage[alphabetic]{amsrefs}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{datetime2} 
+\usepackage[colorlinks=true,linkcolor=blue,]{hyperref}
+
+\usepackage{stackengine}
+\usepackage{scalerel}
+\usepackage{mathtools}
+\usepackage{calc}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{euscript}
+% \def\EuScript#1{\mathscr#1}
+% \usepackage{fourier-otf}
+\usepackage{fourier}
+%\usepackage{palatino}
+% \usepackage[sc]{mathpazo} % add possibly `sc` and `osf` options
+%\usepackage{eulervm}
+%\usepackage{bbm}
+%\usepackage{latexsym}
+% \usepackage{mathrsfs}
+% \usepackage{stmaryrd}
+% \usepackage{stix}
+\def\dotminus{\stackon[.2ex]{$-$}{$.$}}
+% \def\wneg{\stackon[-.2ex]{$\neg$}{$\neg$}}
+\usepackage{dsfont}
+% \newcommand*{\TakeFourierOrnament}[1]{{%
+% \fontencoding{U}\fontfamily{futs}\selectfont\char#1}}
+% \renewcommand*{\danger}{\TakeFourierOrnament{66}}
+\parindent0ex
+\parskip1.2ex
+% \makeatletter
+% \DeclareOldFontCommand{\rm}{\normalfont\rmfamily}{\mathrm}
+% \DeclareOldFontCommand{\sf}{\normalfont\sffamily}{\mathsf}
+% \DeclareOldFontCommand{\tt}{\normalfont\ttfamily}{\mathtt}
+% \DeclareOldFontCommand{\bf}{\normalfont\bfseries}{\mathbf}
+% \DeclareOldFontCommand{\it}{\normalfont\itshape}{\mathit}
+% \DeclareOldFontCommand{\sl}{\normalfont\slshape}{\@nomath\sl}
+% \DeclareOldFontCommand{\sc}{\normalfont\scshape}{\@nomath\sc}
+% \makeatother
+
+\newcommand{\mylabel}[1]{{#1}\hfill}
+\renewenvironment{itemize}
+  {\begin{list}{$\triangleright$}{%
+  \setlength{\parskip}{0mm}
+  \setlength{\topsep}{.4\baselineskip}
+  \setlength{\rightmargin}{0mm}
+  \setlength{\listparindent}{0mm}
+  \setlength{\itemindent}{0mm}
+  \setlength{\labelwidth}{3ex}
+  \setlength{\itemsep}{.2\baselineskip}
+  \setlength{\parsep}{.2\baselineskip}
+  \setlength{\partopsep}{0mm}
+  \setlength{\labelsep}{1ex}
+  \setlength{\leftmargin}{\labelwidth+\labelsep}
+  \let\makelabel\mylabel}}{%
+\end{list}}
+
+\declaretheoremstyle[
+  headfont=\normalfont\bfseries,
+  notefont=\bfseries,
+  notebraces={(}{)},
+  bodyfont=\normalfont,
+  postheadspace=1em,
+  mdframed={
+  nobreak=true,
+  outerlinewidth=1pt,
+  linecolor=gray!20,
+  roundcorner = 1ex,    
+  backgroundcolor=gray!10, 
+  innerleftmargin=1ex,
+  leftmargin=0ex,
+  innerrightmargin=1ex,
+  rightmargin=0ex,
+  innertopmargin=1.5ex, 
+  innerbottommargin=1ex, 
+  skipabove=3ex,
+  skipbelow=1ex}, 
+]{mystyle}
+
+\declaretheorem[style=mystyle]%
+{theorem}
+\declaretheorem[style=mystyle,sibling=theorem]%
+{lemma,proposition,fact,corollary,definition,notation,remark,example,claim,question}
+
+\let\proof\relax
+\declaretheoremstyle[
+  spaceabove=6pt, 
+  spacebelow=6pt, 
+  headfont=\normalfont\itshape, 
+  bodyfont = \normalfont,
+  postheadspace=1em, 
+  qed=\qedsymbol, 
+  headpunct={.}]
+{myproof} 
+\declaretheorem[style=myproof, unnumbered]{proof}
+
+\renewcommand*{\emph}[1]{%
+   \smash{\tikz[baseline]\node[rectangle, fill=teal!25, rounded corners, inner xsep=0.5ex, inner ysep=0.2ex, anchor=base, minimum height = 2.7ex]{\strut #1};}}
+
+%%%%%%% GETCOMMIT
+\newcommand\dotGitHEAD{}
+\newcommand\branch{}
+
+
+\makeatletter\let\myfilehandle\@inputcheck\makeatother
+
+\openin\myfilehandle=.git/HEAD\relax
+
+\begingroup\endlinechar-1
+  \global\read\myfilehandle to \dotGitHEAD
+\endgroup
+\closein\myfilehandle
+
+\newcommand\GetBranch{}
+\def\GetBranch ref: refs/heads/#1\relax{\renewcommand{\branch}{#1}}
+
+\expandafter\GetBranch\dotGitHEAD\relax
+
+\makeatother
+
+\linespread{1.1}
+% \author{S. A. Polymath}
+\author{Domenico Zambella}
+\thanks{Dipartimento di Matematica, Universit\`a di Torino, via Carlo Alberto 10, 10123 Torino.}
+\begin{document}
+\title{Standard analysis}
+% \hfill\texttt{~}
+\hfill\texttt{Branch:\ \branch\ \DTMnow}
+\maketitle
+\raggedbottom
+
+
