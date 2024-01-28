@@ -157,6 +157,18 @@ We say that $p$ is \emph{$\mu$-wide\/} if $\mu(x)\cup p(x)$ is finitely consiste
 If $p\in S_x(\EuScript U)$ we may also say that $p$ is \emph{$\mu$-random,} in other words, $p$ is $\mu$-random if $p\in\EuScript D$ for every $\EuScript D\in1_\mu$ or, equivalently, if $p\notin\EuScript D$ for every $\EuScript D\in0_\mu$.
 That is, when convenient we identify $\mu$ with the sets of $\mu$-random (global) types.
 
+\begin{fact}
+  Every $\mu$-wide type $p\subseteq L_x(\EuScript U)$ extends to a $\mu$-random type. 
+\end{fact}
+
+\begin{proof}
+  Let $q\subseteq L_x(\EuScript U)$ be a maximal $\mu$-wide type containing $p$.
+  It suffices to verify that $q$ is complete.
+  Suppose for a contradiction that $\varphi(x),\neg\varphi(x)\notin q$.
+  Then $\mu(x)\cup q(x)$ is finitely inconsistent with both $\varphi(x)$ and $\neg\varphi(x)$.
+  Then $\mu(x)\cup q(x)$ is finitely inconsistent: a contradiction.
+\end{proof}
+
 Let \emph{$\kappa$}$=\kappa^{<\kappa}$ be the cardinality of $\EuScript U$.
 We say that $\mu$ is \emph{$\kappa$-prime} if for every sequence $\langle\EuScript D_i:i<\kappa\rangle$ of definable sets such that $\EuScript D_i\cup \EuScript D_j\in1_\mu$ for every $i<j<\kappa$, there is an $i<\kappa$ such that $\EuScript D_i\in1_\mu$.
 Sometimes we use the dual version of this property which sounds: for every sequence $\langle\EuScript D_i:i<\kappa\rangle$ of definable sets such that $\EuScript D_i\cap \EuScript D_j\in0_\mu$ for every $i<j<\kappa$, there is an $i<\kappa$ such that $\EuScript D_i\in0_\mu$.
@@ -216,11 +228,11 @@ The terminology originated in some obscure corner of Hrushovski's mind.
 
 \begin{exercise}
   In Example~\ref{ex_mu_fin_sat} the elements of $A^{|x|}$ are, trivially, $\mu$-random.
-  Then $\mu$ has the following property: there is a small set $R$ of $\mu$-random types such that 
+  Then $\mu$ has the following property: there is a small set $R\subseteq S_x(\EuScript U)$ of $\mu$-random types such that 
   
   \ceq{\hfill \EuScript D\in1_\mu}{\Leftrightarrow}{R\subseteq\EuScript D}
   
-  Does this hold for every $A$-invariant $\mu$?
+  Does this hold for every $A$-invariant $\mu$\;?
 \end{exercise}
 
 \begin{example}\label{ex_invariant_filter}
@@ -231,7 +243,8 @@ The terminology originated in some obscure corner of Hrushovski's mind.
 
 \begin{proof}
   Assume $\EuScript D_0\cup\EuScript D_1\in1_\mu$, where $\EuScript D_0,\EuScript D_1$ are conjugate over $A$.
-  By invariance $p\in\EuScript D_0$ if and only if $p\in\EuScript D_1$. Therefore $\EuScript D_0\in1_\mu$.
+  Then $p\in\EuScript D_0$ if and only if $p\in\EuScript D_1$ for every $A$-invariant global type $p$.
+  Therefore $\EuScript D_0\in1_\mu$.
 \end{proof}
 
 \begin{example}
@@ -246,10 +259,10 @@ The terminology originated in some obscure corner of Hrushovski's mind.
 
   \ceq{\hfill\bigcap_{i=1}^n\EuScript B_i}{\subseteq}{\EuScript D}
 
-  Note that a set $\EuScript B$ is $A$-generic if and only if the orbit over $A$ of $\neg\EuScript B$ has the finite intersection property (fip).
+  Note that a set $\EuScript B$ is not $A$-generic if and only if the orbit over $A$ of $\neg\EuScript B$ has the finite intersection property (fip).
   Hence, by taking complements, for any $\EuScript C_i$ such that 
   
-  \ceq{\hfill\neg\EuScript D}{\subseteq}{\bigcup_{i=1}^n\EuScript C_i}
+  \ceq{\hfill\neg\EuScript D}{\subseteq}{\bigcup_{i=1}^n\EuScript C_i,}
 
   there is at least one $i$ such that the $A$-orbit of $\EuScript C_i$ has the fip.
   By a standard (easy) argument we obtain that there is an $A$-invariant type $p\notin\EuScript D$.
@@ -268,7 +281,8 @@ The terminology originated in some obscure corner of Hrushovski's mind.
 
 \begin{proof}
   Let $\EuScript D\in 1_A$. 
-  If $\langle \EuScript D_i:i<\omega\rangle$ is as in Definition~\ref{def_nonforking}, $\EuScript D_0\cup\dots\cup\EuScript D_n\in1_\mu$ for some $n$.
+  Let $\langle \EuScript D_i:i<\omega\rangle$ be as in Definition~\ref{def_nonforking}.
+  Then $\EuScript D_0\cup\dots\cup\EuScript D_n\in1_\mu$ for some $n$.
   Assume $n$ is minimal, we prove that $n=0$.
   Otherwise, let $\EuScript C_i=\EuScript D_i\cup\dots\cup\EuScript D_{i+n-1}$.
   Then $\langle \EuScript C_i:i<\omega\rangle$ is an $A$-indiscernible sequence and $\EuScript C_0\cup\EuScript C_1\in1_\mu$.
@@ -290,5 +304,81 @@ The terminology originated in some obscure corner of Hrushovski's mind.
   By S1, also $\big[p(x\,;a_0)\cup q(x\,;b_1)\big]\cup\big[p(x\,;a_2)\cup q(x\,;b_3)\big]$ is $\mu$-wide.
   A fortiori $p(x\,;a_2)\cup q(x\,;b_1)$ is $\mu$-wide and, by indiscernibility, so is $p(x\,;a_1)\cup q(x\,;b_0)$.
 \end{proof}
+
+We say that $\mu$ is \emph{definable\/} if for every $\varphi(x\,;z)\in L$ the set $\big\{b\in\EuScript U^{|z|}: \mu(x)\rightarrow\varphi(x\,;b)\big\}$ is definable (type-definable).
+The definition of $\mu$ \emph{type-definable\/} is similar.
+For instance, in general $\mu$ in Example~\ref{ex_mu_fin_sat} is type definable, but it is definable if the ambient theory is stable.
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+\section{Independence (tentative)}
+\def\cnonfork{\mathbin{\raise1.8ex\rlap{\kern0.6ex\rule{0.6ex}{0.1ex}}\rlap{\kern1.1ex\rule{0.1ex}{1.9ex}}\raise-0.3ex\hbox{$\smile$} } }
+
+Let $\mu\subseteq L_v(\EuScript U)$, where $|v|=1$, be $A$-invariant.
+When $x$ is the tuple $\langle x_i:i<|x|\rangle$, we say that $p(x)\subseteq L(\EuScript U)$ is $\mu$-wide if it is finitely consistent with $\bigcup_i\mu(x_i)$.
+
+Let $a\in\EuScript U^{|x|}$.
+We write $a\cnonfork_\mu b$ if the type ${\rm tp}(a/A,b)$ is $\mu$-wide. 
+Clearly, this is equivalent to saying that,  $\varphi(x\,;b)$ is $\mu$-wide for every $\varphi(x\,;z)\in L(A)$ such that $\varphi(a\,;b)$.
+
+We write\emph{$b\equiv_\mu b'$\/} if $\mu(x)$ implies $\varphi(x\,;b)\leftrightarrow\varphi(x\,;b')$ for every $\varphi(x\,;z)\in L(A)$
+.
+
+\begin{lemma}\label{lem_coheir_independence}
+  The following properties hold for all $a,b,c$
+  \begin{itemize}
+  \item[1.] $a\cnonfork_\mu b\ \ \Rightarrow\ \ fa\cnonfork_\mu fb$ \ \ 
+            for every $f\in{\rm Aut}(\EuScript U/A)$\hfill \textit{invariance}
+  \item[2.] $a\cnonfork_\mu b\ \ \Leftarrow\ \  a_0\cnonfork_\mu b_0$
+            \ for all finite $a_0\subseteq a$  and $b_0\subseteq b$ \hfill\textit{finite character}
+  \item[3.] $a\cnonfork_\mu c,b$ \ and \ 
+            $c\cnonfork_\mu b\ \ \Rightarrow\ \ a,c\cnonfork_\mu b$
+            \hfill\hfill\hfill\textit{transitivity}
+  \item[4.] $a\cnonfork_\mu b\ \ \Rightarrow\ \ $ 
+            there exists $a'\equiv_{A,\,b}a$ such that 
+            $a'\cnonfork_\mu b,c$
+            \hspace{\stretch{20}}\textit{extension}
+  \item[5.] $a\cnonfork_\mu b_1,b_2$ \ and \ 
+  $b_1\equiv_\mu b_2\ \ \Rightarrow\ \ b_1\equiv_{\mu,\,a}b_2$
+            \hspace{\stretch{20}}\textit{non-splitting}
+  \end{itemize}
+\end{lemma}
+
+\begin{proof}
+  Properties 1,2,3 are immediate.
+  We prove 4. 
+  As ${\rm tp}(a/A,b)$ is $\mu$-wide, it extends to a $\mu$-random type $p(x)$.
+  Then we can take any $a'\models p_{\restriction A,b,c}(x)$.
+\end{proof}
+
+
+\begin{definition} We say that $\cnonfork_\mu$ is \emph{stationary\/} if $a\equiv_Mx\cnonfork_\mu b$ is a complete type over $M,b$ for all finite tuples $b$ and $a$.
+
+  We say \emph{$n$-stationary\/} if this is restricted to $|a|=n$.
+  \end{definition}
+  %
+  
+  Stationarity is often ensured by the following property.
+  
+  \begin{proposition}
+  If for every $\varphi(x)\in L(\EuScript U)$ there is a formula $\psi(x)\in L(M)$ such that $\varphi(\EuScript U)=_\mu\psi(\EuScript U)$ then $\cnonfork_\mu$ is stationary.
+  \end{proposition}
+  
+  \begin{proof}
+  Let  $b\in\EuScript U^{|z|}$ and $a_1,a_2\in\EuScript U^{|x|}$ 
+  be such that $a_i\cnonfork_\mu b$ and $a_1\equiv_Ma_2$.
+  We claim that $a_1\equiv_{M,\,b}a_2$.
+  We need to prove that $\varphi(b\,;a_1)\leftrightarrow\varphi(b\,;a_2)$ 
+  for every  $\varphi(z\,;x)\in L(M)$.
+  Let $\psi(x)\in L(M)$ be such that $\varphi(b\,;\EuScript U)=_M\psi(\EuScript U)$.
+  From $a_i\cnonfork_\mu b$ we obtain that  $\varphi(b\,;a_i)\leftrightarrow\psi(a_i)$.
+  Finally, the claim follows because $a_1\equiv_\mu a_2$.
+  \end{proof}
+
+
 
 \end{document}
