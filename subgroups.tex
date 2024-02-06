@@ -131,7 +131,7 @@
 
 \linespread{1.1}
 % \author{S. A. Polymath}
-\author{M.R.T. Polymath}
+\author{R.T. Polymath}
 \thanks{Dipartimento di Matematica, Universit\`a di Torino, via Carlo Alberto 10, 10123 Torino.}
 \begin{document}
 \title{\textmu-Random thoughts}
@@ -180,12 +180,12 @@ Sometimes we use the dual version of this property which sounds: for every seque
   Assume there is a finitely additive probability measure on the definable subsets of $\EuScript U^{|x|}$.
   Let $1_\mu$ be the set of subsets of measure $1$.
   Then $\mu$ is $\kappa$-prime.
-  Clearly, a global type $p\in S_x(\EuScript U)$ is $\mu$-random, if and only if it is contained in all definable sets of measure $1$.
+  Clearly, a global type $p\in S_x(\EuScript U)$ is $\mu$-random if and only if it is contained in all definable sets of measure $1$.
 \end{example}
 
 \begin{proof}
   Assume for a contradiction that the sets $\langle\EuScript D_i:i<\kappa\rangle$ have positive measure but that $\EuScript D_i\cap \EuScript D_j$ has measure $0$ for every $i<j<\kappa$.
-  As $\kappa$ is regular and uncountable, we can assume that for some $n$ all sets $\EuScript D_i$ have measure $\ge 1/n$.
+  As $\kappa$ is regular and uncountable, we may assume that for some $n$ all sets $\EuScript D_i$ have measure $\ge 1/n$.
   Then, up to a set measure $0$, the sets $\EuScript D_1,\dots,\EuScript D_n$ are pairwise disjoint and contained in $\neg\EuScript D_0$.
   This is a contradiction because $\neg\EuScript D_0$ has measure $<1$.
 \end{proof}
@@ -208,8 +208,8 @@ The terminology originated in some obscure corner of Hrushovski's mind.
 \end{fact}
 
 \begin{proof}
-  (1$\Rightarrow$2)  Let $\langle\EuScript D_i:i<\omega\rangle$ be a sequence of $A$-indiscernibles.
-  By compactness, we can find an indiscernible sequence of length $\kappa$ such that $\EuScript D_0\cup\EuScript D_1\in1_\mu$.
+  (1$\Rightarrow$2)  Let $\langle\EuScript D_i:i<\omega\rangle$ be a sequence of $A$-indiscernibles such that $\EuScript D_0\cup\EuScript D_1\in1_\mu$.
+  By compactness, we can strech this sequence to length $\kappa$.
   By indiscernibility $\EuScript D_i\cup\EuScript D_j\in1_\mu$ for every $i<j<\kappa$.
   Then $\EuScript D_i\in1_\mu$ for some $i<\kappa$ and, by indiscernibility,  $\EuScript D_0\in1_\mu$.
 
@@ -220,7 +220,7 @@ The terminology originated in some obscure corner of Hrushovski's mind.
   For every sequence $\langle\EuScript D_i:i<\kappa\rangle$ be there is an $A$-indiscernible sequence $\langle\EuScript C_i:i<\omega\rangle$ such that for every $n<\omega$ there is some $I\subseteq\kappa$ of cardinality $n$ such that $\EuScript C_{\restriction n}\equiv_A\EuScript D_{\restriction I}$.
 
   Suppose $\EuScript D_i\cup \EuScript D_j\in1_\mu$ for every $i<j<\kappa$.
-  Apply the fact with $n=2$ to obtain $A$-indiscernible sequence $\langle\EuScript C_i:i<\omega\rangle$ such that $\EuScript C_0\cup \EuScript C_1\in1_\mu$.
+  Apply the fact with $n=2$ to obtain $A$-indiscer\-nible sequence $\langle\EuScript C_i:i<\omega\rangle$ such that $\EuScript C_0\cup \EuScript C_1\in1_\mu$.
   Then $\EuScript C_0\in1_\mu$ implies that $\EuScript D_i\in1_\mu$ for some $i<\kappa$.
 \end{proof}
 
@@ -243,7 +243,7 @@ The terminology originated in some obscure corner of Hrushovski's mind.
   
   \ceq{\hfill \EuScript D\in1_\mu}{\Leftrightarrow}{R\subseteq\EuScript D}
   
-  Does this hold for every $A$-invariant $\mu$\;?
+  Characterize the types $\mu$ such that the above property holds.
 \end{exercise}
 
 \begin{example}\label{ex_invariant_filter}
@@ -329,7 +329,7 @@ The terminology originated in some obscure corner of Hrushovski's mind.
   A fortiori $p(x\,;a_2)\cup q(x\,;b_1)$ is $\mu$-wide and, by indiscernibility, so is $p(x\,;a_1)\cup q(x\,;b_0)$.
 \end{proof}
 
-We say that $\mu$ is \emph{definable\/} if for every $\varphi(x\,;z)\in L$ the set $\big\{b\in\EuScript U^{|z|}: \mu(x)\rightarrow\varphi(x\,;b)\big\}$ is definable (type-definable).
+We say that $\mu$ is \emph{definable\/} if for every $\varphi(x\,;z)\in L$ the set $\big\{b\in\EuScript U^{|z|}: \mu(x)\rightarrow\varphi(x\,;b)\big\}$ is definable.
 The definition of $\mu$ \emph{type-definable\/} is similar.
 For instance, in general $\mu$ in Example~\ref{ex_mu_fin_sat} is type definable, but it is definable if the ambient theory is stable.
 
