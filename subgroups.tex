@@ -141,18 +141,18 @@
 \maketitle
 \raggedbottom
 
-Let \emph{$\EuScript U$} be a monster model.
+Let \emph{$\EuScript U$} be a monster model of signature $L$ and let $T={\rm Th}(\EuScript U)$.
 We confuse formulas $\varphi(x)\in L(\EuScript U)$ with the subset of $\EuScript U^{|x|}$ that they define.
 If $\EuScript D=\varphi(\EuScript U)$, we may write $x\in\EuScript D$ for $\varphi(x)$.
 Unless otherwise stated, calligraphic capital letters denote definable sets (with parameters from $\EuScript U$).
-Global type are types over $\EuScript U$ that arecomplete.
-Unless otherwise stated all other types are partial.
+Global types are types over $\EuScript U$ that are complete.
+Unless otherwise stated, any other type is partial.
 
 We denote by ${}^*\!\EuScript U$ an elementary extension of $\EuScript U$ where all global type are realized.
 If $\EuScript D=\varphi(\EuScript U)$, we write ${}^*\!\EuScript D$ for  $\varphi({}^*\!\EuScript U)$. 
 If $p(x)\subseteq L(\EuScript U)$ we write ${}^*\!\!p$ for $p({}^*\!\EuScript U)$.
 
-Below by $\mu(x)\subseteq L(\EuScript U)$ we always denote a consistent type closed under conjunctions and logical consequences that is, if $\varphi(x)\in\mu$ and $\varphi(x)\rightarrow\psi(x)$ then $\psi(x)\in\mu$.
+Below by $\mu(x)\subseteq L(\EuScript U)$ we always denote a consistent type closed under conjunctions and logical consequences modulo $T$ that is, if $\varphi(x)\in\mu$ and $\varphi(x)\rightarrow\psi(x)$ then $\psi(x)\in\mu$.
 We denote by \emph{$1_\mu$\/} the filter $\{\varphi(\EuScript U):\varphi(x)\in\mu\}$.
 We write \emph{$0_\mu$\/} for the corresponding ideal that is, the ideal  $\big\{\neg\varphi(\EuScript U):\varphi(x)\in\mu\big\}$.
 Note that the expressions $\EuScript D\in1_\mu$ and ${}^*\!\!\mu\subseteq{}^*\!\EuScript D$ are synonymous.
@@ -303,7 +303,7 @@ Again, this is equivalent to requiring that ${\rm orbf}(\neg\EuScript D/M)$ does
   For every $\EuScript D$ the following are equivalent
   \begin{itemize}
     \item [1.] there is a global type containing $x\in\EuScript D$ that is invariant over $A$;
-    \item [2.] for every $\EuScript C_1,\dots,\EuScript C_n$ covering $\EuScript D$ there is some $i$ such that ${\rm orb}(\EuScript C_i/A)$ has fip.
+    \item [2.] every finite cover  $\{\EuScript C_1,\dots,\EuScript C_n\}$ of $\EuScript D$ contains some $\EuScript C_i$ such that ${\rm orb}(\EuScript C_i/A)$ has fip.
   \end{itemize}
 \end{fact}
 
@@ -329,7 +329,7 @@ By essentially the same proof we obtain the following.
   For every $\EuScript D$ the following are equivalent
   \begin{itemize}
     \item [1.] there is a global type containing $x\in\EuScript D$ that is Lascar-invariant over $A$;
-    \item [2.] for every $\EuScript C_1,\dots,\EuScript C_n$ covering $\EuScript D$ there is some $i$ such that ${\rm orbf}(\EuScript C_i/A)$ has fip.
+    \item [2.] every finite cover  $\{\EuScript C_1,\dots,\EuScript C_n\}$ of $\EuScript D$ contains some $\EuScript C_i$ such that ${\rm orbf}(\EuScript C_i/A)$ has fip.
   \end{itemize}
 \end{fact}
 
@@ -346,8 +346,10 @@ In fact, as the number of invariant types is bounded, it is immediate that there
 
 \begin{fact}
   Let $\mu$ be S1 over $A$.
-  Then $1_\mu$ contains $1_{\nu^A}$.
+  Then $1_{\nu^A}\subseteq 1_\mu$.
 \end{fact}
+
+An immediate consequence that $\mu$-random elements are $\nu^A$-random.
 
 \begin{proof}
   Let $\EuScript D\in 1_{\nu^A}$. 
@@ -359,19 +361,44 @@ In fact, as the number of invariant types is bounded, it is immediate that there
   From S1 we obtain $\EuScript C_0\in1_\mu$ which contradicts the minimality of $n$.
 \end{proof}
 
+A type $p(x\,;y)$ that is Lascar-invariant over $A$ is \emph{stable\/} if $p(a_0\,;b_1)\rightarrow p(a_1\,;b_0)$ for every $A$-indiscernible sequence $\langle a_i;b_i:i<\omega\rangle$.  
+
+\begin{fact}\label{fact_stable_types}
+  Every stable type $p(x\,;y)$ is equivalent to a type $q(x\,;y)\subseteq p$ containing only stable formulas.
+\end{fact}
+
+\begin{proof}
+  Let $i(\bar x\,;\bar y)$ be the type that says that $\langle x_i;y_i:i<\omega\rangle$ is a sequence of indiscernibles over $A$.
+  The required type $q(x\,;y)$ contains the formulas $\psi(x\,;y)\in p$ such that $i(\bar x\,;\bar y)\wedge\psi(x_0;y_1)\rightarrow\psi(x_1;y_0)$.
+\end{proof}
+
 \begin{theorem}
-  Let $p(x\,;z), q(x\,;z)\subseteq L(A)$.
+  Let $p(x\,;z), q(x\,;z)\subseteq L(\EuScript U)$ be Lascar-invariant over $A$.
   Let $\mu$ be S1 and Lascar-invariant over $A$.
-  Then the relation below is stable
+  Then the relation
 
   \ceq{\hfill R(a,b)}{\Leftrightarrow}{p(x\,;a)\cup q(x\,;b)} is wide.
 
+  is stable.
 \end{theorem}
 
 \begin{proof}
-  Let $\langle a_i,b_i: i<\omega\rangle$ be a sequence of $A$-indiscernibles such that $p(x\,;a_0)\cup q(x\,;b_1)$ is $\mu$-wide.
+  Let $\langle a_i;b_i: i<\omega\rangle$ be a sequence of $A$-indiscernibles such that $p(x\,;a_0)\cup q(x\,;b_1)$ is $\mu$-wide.
   By S1, also $\big[p(x\,;a_0)\cup q(x\,;b_1)\big]\cup\big[p(x\,;a_2)\cup q(x\,;b_3)\big]$ is $\mu$-wide.
   A fortiori $p(x\,;a_2)\cup q(x\,;b_1)$ is $\mu$-wide and, by indiscernibility and the Lascar-invariance of $\mu$, also $p(x\,;a_1)\cup q(x\,;b_0)$ is wide.
+\end{proof}
+
+\begin{fact}
+  Let $q(x\;y)\subseteq L(M)$ be stable.
+  Assume $a\equiv_M a' $ and $b\equiv_Mb'$ are such that $a\cnonfork_M b$ and $a'\cnonfork_M b'$.
+  Then $q(a\;b)\leftrightarrow q(a'\,;b')$.
+\end{fact}
+
+\begin{proof}
+  By invariance we may assume that $b'=b$.
+  Let $\varphi(x\,;y)\in q$.
+  By Fact~\ref{fact_stable_types} we can assume that $\varphi(x\,;y)$ is stable.
+  Then $\varphi(a\,;b)\leftrightarrow\varphi(a'\,;b)$ by stationarity.
 \end{proof}
 
 \begin{definition}
@@ -381,24 +408,6 @@ In fact, as the number of invariant types is bounded, it is immediate that there
 For instance, $\mu$ in Example~\ref{ex_mu_fin_sat} is type definable.
 
 Note that if $\mu$ is type-definable over $A$ and $\varphi(x\,;b)\notin\mu$ the there is a formula $\vartheta(z)\in L(A)$ such that $\vartheta(b)$ and $\varphi(x\,;b')\notin\mu$ for every $b'\models\vartheta(z)$.
-
-\begin{fact}
-  Let $q(x\;y)\subseteq L(M)$ be stable.
-  Assume $a\equiv_M a' $ and $b\equiv_Mb'$ are such that $a\cnonfork_M b$ and $a'\cnonfork b'$.
-  Then $q(a\;b)\leftrightarrow q(a'\,;b')$.
-\end{fact}
-
-\begin{proof}
-  Suppse not. By invariance we may assume that $b'=b$.
-  Let $\varphi(x\,;y)\in q$ be such that $q(a\;b)$ and $\neg\varphi(a'\,;b)$.
-  Let $p(x)$ be a global coheir of ${\rm tp}(a/M,b)$.
-  Let $p'(x)$ be a global coheir of ${\rm tp}(a'/M,b)$.
-
-  Let $\langle a_i\;b_i:i<\omega\rangle$ be defined as follows.
-  Set $b_0=b$. 
-  Then let $b_{i+1}\equiv_{M,b\restriction i}b_i$ be such that $b_{i+1}\cnonfork_Mb_{\restriction(i+1)},a_{\restriction i}$ and $a_i\models p(x)\mid M,b_{\restriction i}$.
-\end{proof}
-
 %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%
