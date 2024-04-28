@@ -16,10 +16,10 @@
 \usepackage{calc}
 \usepackage{amsthm}
 \usepackage{thmtools}
+\usepackage{euscript}
 \usepackage[framemethod=TikZ]{mdframed}
 \usepackage{amssymb}
 \usepackage{amsfonts}
-\usepackage{euscript}
 % \def\EuScript#1{\mathscr#1}
 % \usepackage{fourier-otf}
 \usepackage{fourier}
@@ -77,11 +77,11 @@
   outerlinewidth=1pt,
   linecolor=gray!20,
   roundcorner = 1ex,    
-  backgroundcolor=gray!10, 
+  backgroundcolor=gray!10,
+  leftmargin=1ex,
+  rightmargin=1ex, 
   innerleftmargin=1ex,
-  leftmargin=0ex,
-  innerrightmargin=1ex,
-  rightmargin=0ex,
+  innerrightmargin=10ex,
   innertopmargin=1.5ex, 
   innerbottommargin=1ex, 
   skipabove=3ex,
@@ -148,7 +148,7 @@ Unless otherwise stated, calligraphic capital letters denote definable sets (wit
 Global types are types over $\EuScript U$ that are complete.
 Unless otherwise stated, any other type is partial.
 
-We denote by ${}^*\!\EuScript U$ an elementary extension of $\EuScript U$ where all global type are realized.
+We denote by ${}^*\!\EuScript U$ an elementary extension of $\EuScript U$ where all global types are realized.
 If $\EuScript D=\varphi(\EuScript U)$, we write ${}^*\!\EuScript D$ for  $\varphi({}^*\!\EuScript U)$. 
 If $p(x)\subseteq L(\EuScript U)$ we write ${}^*\!\!p$ for $p({}^*\!\EuScript U)$.
 
@@ -255,44 +255,58 @@ The terminology originated in some obscure corner of Hrushovski's mind.
   Hence $\EuScript D_0\in1_\mu$.
 \end{proof}
 
-For every small set $A$ we define
+Let $G$ be subgroup of ${\rm Aut}(\EuScript U)$.
+We say that $\EuScript D\subseteq\EuScript U^{|x|}$ is \emph{$G$-generic\/}if for every finitely many $G$-translates of $\EuScript D$ cover $\EuScript U^{|x|}$.
+Note that $\EuScript D$ is $G$-generic if and only if the $G$-orbit of $\neg\EuScript D$ does not have \emph{fip\/} (i.e.\@ the finite intersection propery).
+We define
 
 {\def\ceq#1#2#3{\parbox[t]{10ex}{$\displaystyle #1$}\parbox{6ex}{\hfil $#2$}{$\displaystyle #3$}}
-\ceq{\hfill\lambda\!^A(x)}{=}{\big\{\varphi(x)\ :\ \varphi(x)\in p\ {\rm\ for\ every\ }p\in S_x(\EuScript U)\ \textrm{that is Lascar-invariant over}\ A\big\}}}
 
-Clearly, a type is $\lambda\!^A$-wide if and only if it has an extension to a global type that is Lascar-invariant over $A$.
+\ceq{\hfill\gamma\!_G(x)}{=}{\big\{\varphi(x)\ :\ \varphi(x)\in p\ {\rm\ for\ every\ }G\textrm{-invariant}\ p\in S_x(\EuScript U)\big\}}
+}
 
-\begin{lemma}
-  $\lambda\!^A$ is S1 over $A$.
-\end{lemma}  
+We write $1_G$ and $0_G$ for the filter, respectively ideal, that is associated to $\gamma_G$.
+Note that a type is $\gamma_G$-wide if and only if it has an extension to a $G$-invariant global type.
+
+\begin{fact}\label{fact_ig}
+  Let $G$ be subgroup of ${\rm Aut}(\EuScript U)$.
+  For every $\EuScript D$ the following are equivalent
+  \begin{itemize}
+    \item [1.] there is a global $G$-invariant type containing $x\in\EuScript D$;
+    \item [2.] every finite cover $\{\EuScript C_1,\dots,\EuScript C_n\}$ of $\EuScript D$ contains some $\EuScript C_i$ whose $G$-orbit has fip.
+  \end{itemize}
+\end{fact}
 
 \begin{proof}
-  Assume $\EuScript D_0\cup\EuScript D_1\in1_{\lambda\!^A}$, where $\EuScript D_0,\EuScript D_1$ start a sequence of $A$-indiscernibles.
-  Then $\EuScript D_0,\EuScript D_1$ are conjugated over some model $M$ containing $A$.
-  If $p$ is any global type Lascar-invariant over $A$, then $p$ is invariant over $M$.
-  Therefore $p$ contains $x\in\EuScript D_0$ if and only if it contains $x\in\EuScript D_1$.
-  Therefore $\EuScript D_0\in1_{\lambda\!^A}$.
+  (1$\Rightarrow$2) \ Let $p$ be a global $G$-invariant type containing $x\in\EuScript D$.
+  By completeness $p$ contains $\EuScript C_i$ for some $i$.
+  By $G$-invariance, $p$ contains the whole $G$-orbit of $x\in\EuScript C_i$, hence (2) follows.
+  
+  (2$\Rightarrow$1) \ Let $p$ be maximally finitely consistent type containing $x\in\EuScript D$ such that all formulas $p$ have the property in (2).
+  We claim that $p$ is complete type.
+  Suppose for a contradiction that $\vartheta(x),\neg\vartheta(x)\notin p$.
+  By maximality there is some $\psi(x)\in p$ and some $\EuScript C_1,\dots,\EuScript C_n$ covering both $\psi(\EuScript U)\cap\EuScript D$ and $\psi(\EuScript U)\smallsetminus\EuScript D$ such that no $\EuScript C_i$ has a $G$-orbit with fip.
+  This is a contradiction because $\EuScript C_1,\dots,\EuScript C_n$ cover $\psi(\EuScript U)$.
+  Finally, (1) follows if we can prove that $p$ is $G$-invariant.
+  Suppose not then, by completeness, $p$ contains $x\in\EuScript B\smallsetminus g\EuScript B$ for some $\EuScript B$ and some $g\in G$.
+  But $\EuScript B\smallsetminus g\EuScript B$ is disjoint of $g\EuScript B\smallsetminus g^2\EuScript B$, hence it cannot satisfy (2).
+  A contradiction.
 \end{proof}
 
-We say that $\EuScript D$ is \emph{generic\/} over $A$ if for every finitely many translates of $\EuScript D$ under ${\rm Aut}(\EuScript U/A)$ cover $\EuScript U^{|x|}$.
-Note that $\EuScript D$ is generic over $A$ if and only if  ${\rm orb}(\neg\EuScript D/A)$ does not have \emph{fip\/} (i.e.\@ the finite intersection propery).
-
-The definition of \emph{Lascar-generic\/} over $A$ is similar, we only replace ${\rm Aut}(\EuScript U/A)$ by ${\rm Autf}(\EuScript U/A)$.
-Again, this is equivalent to requiring that ${\rm orbf}(\neg\EuScript D/M)$ does not have fip.
-
 \begin{fact}
-  $1_{\lambda\!^A}$ is the filter generated by sets that are Lascar-generic over $A$.
+  Let $G$ be subgroup of ${\rm Aut}(\EuScript U)$.
+  Then $1_G$ is the filter generated by sets that are $G$-generic.
 \end{fact}
   
 \begin{proof}
-  ($\supseteq$) \ It suffices to prove if $\EuScript D$ is Lascar-generic over $A$ then $\EuScript D\in1_{\lambda\!^A}$.
-  That is, every $\lambda\!^A$-random type $p$ contains $x\in\EuScript D$.
-  Let $p$ be $\lambda\!^A$-random.
-  By Lascar-genericity, there are some strong $A$-automorphisms $f_1,\dots,f_n$ be such that $\EuScript U^{|x|}=\bigcup_i f_i\EuScript D$.
-  By completeness, $p$ contains $x\in f_i\EuScript D$ for some $i$.
-  By Lascar-invariance, $p$ contains also $x\in\EuScript D$.
+  ($\supseteq$) \ It suffices to prove if $\EuScript D$ is $G$-generic then $\EuScript D\in1_G$.
+  That is, every $\gamma_G$-random type $p$ contains $x\in\EuScript D$.
+  Let $p$ be $\gamma_G$-random.
+  By $G$-genericity, there are some $g_1,\dots,g_n\in G$ be such that $\EuScript U^{|x|}=\bigcup_i g_i\EuScript D$.
+  By completeness, $p$ contains $x\in g_i\EuScript D$ for some $i$.
+  By $G$-invariance, $p$ contains also $x\in\EuScript D$.
 
-  ($\subseteq$) Assume that there are no Lascar-generic sets $\EuScript B_i$ such that 
+  ($\subseteq$) Assume that there are no $G$-generic sets $\EuScript B_i$ such that 
 
   \ceq{\hfill\bigcap_{i=1}^n\EuScript B_i}{\subseteq}{\EuScript D}
 
@@ -300,49 +314,29 @@ Again, this is equivalent to requiring that ${\rm orbf}(\neg\EuScript D/M)$ does
   
   \ceq{\hfill\neg\EuScript D}{\subseteq}{\bigcup_{i=1}^n\EuScript C_i,}
 
-  at least one ${\rm orbf}(\EuScript C_i/A)$ has the fip.
-  By Fact~\ref{fact_Lig} below, we obtain that $x\notin\EuScript D$ belongs to some global type that is Lascar-invariant over $A$.
-  Therefore $\EuScript D\notin1_{\lambda\!^A}$.
+  at least one $\EuScript C_i$ has a $G$-orbit with fip.
+  By Fact~\ref{fact_ig} below, we obtain that $x\notin\EuScript D$ belongs to some global $G$-invariant type.
+  Therefore $\EuScript D\notin1_G$.
 \end{proof}
 
-\begin{fact}
-  For every $\EuScript D$ the following are equivalent
-  \begin{itemize}
-    \item [1.] there is a global type containing $x\in\EuScript D$ that is invariant over $A$;
-    \item [2.] every finite cover  $\{\EuScript C_1,\dots,\EuScript C_n\}$ of $\EuScript D$ contains some $\EuScript C_i$ such that ${\rm orb}(\EuScript C_i/A)$ has fip.
-  \end{itemize}
-\end{fact}
+\begin{lemma}
+  If $G={\rm Autf}(\EuScript U/A)$ then $\gamma\!_{G}$ is S1 over $A$.
+\end{lemma}
 
 \begin{proof}
-  (1$\Rightarrow$2) \ Let $p$ be a global $A$-invariant type containing $\varphi(x)$.
-  Then $p$ contains $\EuScript C_i$ for some $i$.
-  By invariance, $p$ contains $x\in\EuScript C$ for every $\EuScript C$ conjugated to $\EuScript C_i$ hence (2) follows.
-
-  (2$\Rightarrow$1) \ Let $p$ be maximally finitely consistent type containing $\varphi(x)$ such that all formulas $p$ have the property in (2).
-  We claim that $p$ is complete type.
-  Suppose for a contradiction that $\vartheta(x),\neg\vartheta(x)\notin p$.
-  By maximality there is some $\psi(x)\in p$ and some $\EuScript C_1,\dots,\EuScript C_n$ covering both $\psi(\EuScript U)\cap\EuScript D$ and $\psi(\EuScript U)\smallsetminus\EuScript D$ such that no ${\rm orb}(\EuScript C_i/A)$ has fip.
-  This is a contradiction because $\EuScript C_1,\dots,\EuScript C_n$ also cover $\psi(\EuScript U)$.
-  Finally, (1) follows if we can prove that $p$ is invariant over $A$.
-  Suppose not then, by completeness, $p$ contains $x\in\EuScript B\smallsetminus f\EuScript B$ for some $\EuScript B$ and some $f\in{\rm Aut}(\EuScript U/A)$.
-  But $\EuScript B\smallsetminus f\EuScript B$ is disjoint of $f\EuScript B\smallsetminus f^2\EuScript B$, hence it cannot satisfy (2).
-  A contradiction.
+  Assume $\EuScript D_0\cup\EuScript D_1\in1_G$, where $\EuScript D_0,\EuScript D_1$ start a sequence of $A$-indiscernibles.
+  Then $\EuScript D_0,\EuScript D_1$ are conjugated over some model $M$ containing $A$.
+  If $p$ is any global $G$-invariant type, then $p$ is invariant over $M$.
+  Therefore $p$ contains $x\in\EuScript D_0$ if and only if it contains $x\in\EuScript D_1$.
+  Then $\EuScript D_0\in1_G$.
 \end{proof}
-
-By essentially the same proof we obtain the following.
-
-\begin{fact}\label{fact_Lig}
-  For every $\EuScript D$ the following are equivalent
-  \begin{itemize}
-    \item [1.] there is a global type containing $x\in\EuScript D$ that is Lascar-invariant over $A$;
-    \item [2.] every finite cover  $\{\EuScript C_1,\dots,\EuScript C_n\}$ of $\EuScript D$ contains some $\EuScript C_i$ such that ${\rm orbf}(\EuScript C_i/A)$ has fip.
-  \end{itemize}
-\end{fact}
 
 In Example~\ref{ex_mu_fin_sat} the elements of $A^{|x|}$ are, trivially, $\mu$-random.
 Clearly, there are many other $\mu$-random types: all global types that are finitely satisfied in $A$ are $\mu$-random.
-If we allow elements outside $\EuScript U$, the filter $1_{\lambda\!^A}$ has an expression similar to $1_\mu$ in Example~\ref{ex_mu_fin_sat}.
-In fact, as the number of invariant types is bounded, it is immediate that there is a small set of $\lambda\!^A$-random elements $R$ such that $1_{\lambda\!^A}=\big\{\EuScript X\subseteq\EuScript U^{|x|}\ :\ R\subseteq{}^*\!\EuScript X\big\}$.
+
+Let $G={\rm Autf}(\EuScript U/A)$.
+The filter $1_G$ has an expression similar to $1_\mu$ in Example~\ref{ex_mu_fin_sat} if we replce $A$ with a set elements of ${}^*\!\EuScript U$.
+In fact, as the number of $G$-invariant types is bounded, it is immediate that there is a small set of $\gamma$-random elements $R\subseteq{}^*\!\EuScript U$ such that $1_G=\big\{\EuScript X\subseteq\EuScript U^{|x|}\ :\ R\subseteq{}^*\!\EuScript X\big\}$.
 
 \begin{definition}\label{def_nonforking}
   Let \emph{$1_{\nu^A}$\/} be the filter generated by the sets $\EuScript D\subseteq\EuScript U^{|x|}$ such that there is an $A$-indiscerible sequence $\langle \EuScript D_i:i<\omega\rangle$ such that $\EuScript D=\EuScript D_0$ and $\EuScript D_0,\dots,\EuScript D_n$ cover $\EuScript U^{|x|}$ for some $n$.
@@ -383,7 +377,7 @@ A type $p(x\,;y)$ that is Lascar-invariant over $A$ is \emph{stable\/} if $p(a_0
   Let $\mu$ be S1 and Lascar-invariant over $A$.
   Then the relation
 
-  \ceq{\hfill R(a,b)}{\Leftrightarrow}{p(x\,;a)\cup q(x\,;b)} is wide.
+  \ceq{\hfill R(a,b)}{\Leftrightarrow}{p(x\,;a)\cup q(x\,;b)} is wide
 
   is stable.
 \end{theorem}
@@ -416,44 +410,62 @@ For instance, $\mu$ in Example~\ref{ex_mu_fin_sat} is type definable.
 
 Note that if $\mu$ is type-definable over $A$ and $\varphi(x\,;b)\notin\mu$ the there is a formula $\vartheta(z)\in L(A)$ such that $\vartheta(b)$ and $\varphi(x\,;b')\notin\mu$ for every $b'\models\vartheta(z)$.
 
-%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
 \section{Stable groups}
 
-In this section $\EuScript U$ is a group; the group operations, denoted by $1,\,\cdot\,,\,{}^{-1}$, are among the symbols of $L$.
+In this section $\EuScript U$ has two definable sets $\EuScript G$ and $\EuScript S$ where $\EuScript G$ is a group that acts from the left on $\EuScript S$.
+The group operations and the group action are definable.
+We use the symbol $\,\cdot\,$ for both the group multiplication and the group action.
+
+Let $\EuScript D\subseteq\EuScript S$ be a definable set.
+Let $L'$ be the language that has only one binary relation symbol $r(x,y)$.
+We write $\langle\EuScript U, \EuScript D\rangle$ for the $L'$-structure that interpretes $r(x,y)$ by $x\in\EuScript S\ \wedge\ y\in\EuScript G\ \wedge\  x\in y\cdot\EuScript D$.
+Note that $\EuScript D$ is definable in $\langle\EuScript U, \EuScript D\rangle$ by the formula $r(x,1)$.
+The action of $\EuScript G$ on $\EuScript U$ defined by left multiplication on $\EuScript G$ and $\EuScript S$ is an $L'$-automorphisms.
+Therefore we may identify $\EuScript G$ with a common subgroup of the groups $L'\mbox{-Aut}({\EuScript U},{\EuScript D})$ as $\EuScript D$ ranges over the definable subsets of $\EuScript S$.
 
 %A set $\EuScript X\subseteq\EuScript U$ is generic if there are some finitely many $g_1,\dots,g_n\in\EuScript U$ such that the sets $g_i\EuScript X$ cover $\EuScript U$.
 
-Let $\EuScript D\subseteq\EuScript U$ be a definable set.
+\begin{fact}\label{fact_generic_G_L}
+Let $\EuScript D\subseteq\EuScript S$ be a definable set.
+Write $G_{\EuScript D}$ for $L'\mbox{-Aut}({\EuScript U},{\EuScript D})$.
+Then the following are equivalent
+\begin{itemize}
+  \item[1.] $\EuScript D$ is $G_{\EuScript D}$-generic;
+  \item[2.] $\EuScript D$ is $\EuScript G$-generic.
+\end{itemize}
+\end{fact}
 
-
-\begin{theorem}
-  ($T$ stable) \ The following are equivalent
-  \begin{itemize}
-    \item[1.] $\EuScript D$ is Lascar-generic over $\varnothing$;
-    \item[2.] for some $g_1,\dots,g_n\in\EuScript U$, the sets $g_i\cdot\EuScript D$ cover $\EuScript U$. 
-  \end{itemize}
-\end{theorem}
-
-\begin{proof}[?]
-  Let $L'$ be a language that has only one binary relation symbol $r(x,y)$.
-  In $\EuScript U$ we interprete $r(x,y)$ by $y^{-1}\cdot x\in\EuScript D$.
-  Note that $\EuScript D$ is definable by the formula $r(x,1)$.
-  %The action of $\EuScript U$ on itself by left multiplication is an $L'$-automorphisms and the $L'$-orbit of $\EuScript D$ is $\{r(\EuScript U,g)\ :\ g\in\EuScript U\}$.
-  By stability exacltly one of the formulas $r(x,1)$ and $\neg r(x,1)$ is almost finitely satisfied in $\varnothing$.
-  Assume the first, then $\neg r(\EuScript U,1)$ has no extension to a global Lascar-invariant $L'$-type.
+\begin{proof}
+  The equivalence follows from the fact that the orbits of $\EuScript D$ under the action of $G$ and $\EuScript G$ coincide.
+  In fact, if $f\in L'\mbox{-Aut}({\EuScript U},{\EuScript D})$ then $f{\EuScript D}$ is defined by $r(x,f1)$.
+  Let $g=f1\in\EuScript G$.
+  Clearly $r(\EuScript U,g)=g\cdot\EuScript D$.
 \end{proof}
 
-Then $L'\mbox{-orbf}\big(\neg r(\EuScript U,1)\big)$ does not have fip.
-Equivalently, there are $f_i\in L'\mbox{-Autf}({\EuScript U})$, where $i=1,\dots,n$ such that the sets $r(\EuScript U,f_i1)$ cover $\EuScript U$.
-Let $g_i=f_i\EuScript U$, then the sets $g_i\cdot\EuScript D$ covers $\EuScript U$.
+\begin{theorem}
+  Let $\EuScript D\subseteq\EuScript S$ be a definable set.
+  Assume that $r(x,y)$ is stable formula in $\langle\EuScript U,\EuScript D\rangle$.
+  Assume also that $\EuScript G$ acts transitively on $\EuScript S$, i.e.\@ there is a unique $\EuScript G$-orbit.
+  Then either $\EuScript D$ or $\EuScript S\smallsetminus\EuScript D$ is $\EuScript G$-generic.
+\end{theorem}
 
-
-
+\begin{proof}
+  Assume $\EuScript S\smallsetminus\EuScript D$ is not $\EuScript G$-generic.
+  We claim that $\EuScript D$ is $\EuScript G$-generic.
+  By Fact~\ref{fact_generic_G_L} $\EuScript S\smallsetminus\EuScript D$ is not $G_{\EuScript D}$-generic.
+  By Fact~\ref{fact_ig} there is a global $G_{\EuScript D}$-invariant type $p(x)$ containing $x\in\EuScript D$.
+  By stability, there is a positive Boolean combination of sets in the $G_{\EuScript D}$-orbit of $\EuScript D$ that is $L'$-definable over $\varnothing$.
+  By the transitivity of the action, $\EuScript S$ is the only set that is $L'$-definable over $\varnothing$.
+  Therefore some disjunction of sets in the $G_{\EuScript D}$-orbit of $\EuScript D$ cover $\EuScript S$.
+  As the $G_{\EuScript D}$-orbit and the $\EuScript G$-orbit coincide, the claim follows.
+\end{proof}
+  
 %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%
